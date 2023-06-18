@@ -19,7 +19,16 @@ td {
   font-family: "Segoe UI Regular", SegoeUI, "Segoe UI";
   color: rgb(4, 89, 153);
 }
-
+a {
+  padding: 6px;
+  border-bottom: #868ca036;
+  border-width: 0px;
+  /* border-bottom-style: solid; */
+  text-align: left;
+  font-size: 0.8rem;
+  font-family: "Segoe UI Regular", SegoeUI, "Segoe UI";
+  color: rgb(4, 89, 153);
+}
 table {
   table-layout: fixed;
   width: 100%;

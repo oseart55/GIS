@@ -4,7 +4,7 @@ async function loadIntoTable(url, table){
 	const response = await fetch(url);
 	const { fields, features } = await response.json();
 	
-	headers = ["Incident ID", "Date", "Type", "Disposition", "Block Address", "City", "Location"]
+	headers = ["Incident ID", "Date", "Type", "Disposition", "Block Address", "City", "Location (Lat,Lon)"]
 	
 	tableHead.innerHTML = "<tr></tr>";
 	tableBody.innerHTML = "";
@@ -18,6 +18,7 @@ async function loadIntoTable(url, table){
 	for (const feature of features){
 		const featureElement = document.createElement("tr");
 		
+		
 		const IncidentId = document.createElement("td");
 		const IncidentDate = document.createElement("td");
 		const Category = document.createElement("td");
@@ -25,26 +26,28 @@ async function loadIntoTable(url, table){
 		const BlkAddress = document.createElement("td");
 		const City = document.createElement("td");
 		const Location = document.createElement("td");
+		const links = document.createElement("a");
+		const linkText = document.createTextNode(String(feature.geometry.y) +" , "+ String(feature.geometry.x));
+		links.appendChild(linkText);
+		links.title = "a";
+		links.href = "https://maps.google.com/?q="+String(feature.geometry.y) +","+ String(feature.geometry.x)
 		
 		IncidentId.textContent = feature.attributes.IncidentId;
-		var date = new Date(feature.attributes.IncidentDate * 1000)
+		var date = new Date(feature.attributes.IncidentDate).toLocaleDateString("en-US")+" "+ new Date(feature.attributes.IncidentDate).toLocaleTimeString("en-US")
 		IncidentDate.textContent = date;
 		Category.textContent = feature.attributes.Category;
 		Disposition.textContent = feature.attributes.CadDisposition;
 		BlkAddress.textContent = feature.attributes.BlkAddress;
 		City.textContent = feature.attributes.City;
-		Location.textContent = String(feature.geometry.y) +","+ String(feature.geometry.x)
-		
-		
 		featureElement.appendChild(IncidentId)
 		featureElement.appendChild(IncidentDate)
 		featureElement.appendChild(Category)
 		featureElement.appendChild(Disposition)
 		featureElement.appendChild(BlkAddress)
 		featureElement.appendChild(City)
-		featureElement.appendChild(Location)
-		
+		featureElement.appendChild(document.body.appendChild(links))
 		tableBody.appendChild(featureElement)
+		
 		
 	}
 	
