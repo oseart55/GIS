@@ -1,7 +1,7 @@
 async function loadIntoTable(url, table){
 	const tableHead = table.querySelector("thead");
 	const tableBody = table.querySelector("tbody");
-	const response = await fetch("https://geodata.sarpy.gov/arcgis/rest/services/PublicSafety/PublicCrimeMap/FeatureServer/1/query?where=1%3D1&outFields=IncidentId,IncidentDate,Category,BlkAddress,City&returnGeometry=false&outSR=4326&f=json");
+	const response = await fetch(url);
 	const { fields, features } = await response.json();
 	
 	
@@ -44,5 +44,5 @@ async function loadIntoTable(url, table){
 }
 
 
-loadIntoTable("./data.json",document.querySelector("table"));
+loadIntoTable("https://geodata.sarpy.gov/arcgis/rest/services/PublicSafety/PublicCrimeMap/FeatureServer/1/query?where=1%3D1&outFields=IncidentId,IncidentDate,Category,BlkAddress,City&returnGeometry=false&outSR=4326&f=json",document.querySelector("table"));
 
