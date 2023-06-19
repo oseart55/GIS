@@ -29,7 +29,10 @@ a {
   font-family: "Segoe UI Regular", SegoeUI, "Segoe UI";
   color: rgb(4, 89, 153);
 }
+about-button{
+	float: right;
 
+}
 table {
   table-layout: fixed;
   width: 100%;

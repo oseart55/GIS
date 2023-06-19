@@ -95,11 +95,10 @@ async function loadDouglasCounty(url, table){
 		featureElement.appendChild(BlkAddress)
 		featureElement.appendChild(document.body.appendChild(links))
 		tableBody.appendChild(featureElement)
-		
-		
 	}
 	
 }
+
 function loadSelect(){
 	const btn = document.querySelector('#btn');
         const sb = document.querySelector('#framework');
@@ -116,8 +115,14 @@ function loadSelect(){
 			else if (selectedValues == "Douglas County"){
 				loadDouglasCounty("https://services.arcgis.com/pDAi2YK0L0QxVJHj/ArcGIS/rest/services/DCSO_Crime_Incidents_Public/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&orderByFields=OccurredOn%20DESC&f=pjson",document.querySelector("table"))
 			}
+			else if (selectedValues == "Lincoln County")
+				loadLincoln("https://cjis.lincoln.ne.gov/~lpd/cfstoday.htm")
         };
 }
+
+function loadAbout(){
+    
+};
 
 loadSelect();
 loadIntoTable("https://geodata.sarpy.gov/arcgis/rest/services/PublicSafety/PublicCrimeMap/FeatureServer/1/query?where=1%3D1&outFields=IncidentId,IncidentDate,Category,CadDisposition,BlkAddress,City&returnGeometry=true&outSR=4326&f=json",document.querySelector("table"));
